@@ -10,7 +10,7 @@ class NewsTest(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.new_news = News (1234,'Best News Source','All Articles are Available','http://newsapi.org/v2/everything?q=bitcoin&from=2020-10-29&sortBy=publishedAt&apiKey=98cbe32074334e28b2b2499159d3bc32')
+        self.new_news = News (1234,'Best News Source','All Articles are Available','https://image.tmdb.org/t/p/w500/khsjha27hbs')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_news,News))  
