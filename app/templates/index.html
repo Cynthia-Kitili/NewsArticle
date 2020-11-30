@@ -12,11 +12,17 @@
         <h1>Welcome to this application</h1>
         <p>{{message}}</p>
 
-        <!-- Popular movie section  -->
-        <h3> Popular News</h3>
+        <!-- Popular news section  -->
+        <h3> Category News</h3>
         <ul>
-            {% for popular_news in popular %}
-                <li>{{ popular_news.title}}</li>
+            {% for category_news in popular %}
+                <li>{{ category_news.title}}</li>
+            {% endfor %}
+        </ul>
+        <h3> Source News</h3>
+        <ul>
+            {% for source_news in popular %}
+                <li>{{ source_news.title}}</li>
             {% endfor %}
         </ul>
 

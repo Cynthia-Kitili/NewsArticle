@@ -53,7 +53,7 @@ def process_results(news_list):
         url = news_item.get('url')
 
         if url:
-            source_object = Sources(id, name, description, category, url)
+            source_object = Sources(id, title,name, description, category, url)
             news_results.append(source_object)
 
     return news_results    
@@ -63,7 +63,7 @@ def get_news(category):
     Function that gets the json response to url request
     '''
 
-    get_news_url = article_url.format(category, apiKey)
+    get_news_url = article_url.format(category, api_key)
 
     with urllib.request.urlopen(get_news_url) as url:
         get_news_data = url.read()
@@ -82,16 +82,17 @@ def process_article_results(article_list):
     article_results = []
 
     for item in article_list:
+        id = item.get('id')
+        name = item.get('name')
         author = item.get('author')
         title = item.get('title')
         description = item.get('description')
-        url = item.get('url')
-        urlToImage = item.get('urlToImage')
-        id = item.get('id')
-        publishedAt = item.get('publishedAt')
+        content = item.get('content')
+        
+        
 
         if url:
-            article_object = News(author,id, title, description, url, urlToImage,publishedAt)
+            article_object = News(id,name,author,title,description,content)
             article_results.append(article_object)
 
     return article_results
