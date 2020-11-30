@@ -9,8 +9,8 @@ api_key = app.config ['NEWS_API_KEY']
 
 
 # Getting the movie base url
-base_url = app.config["ARTICLES_API_BASE_URL"]
-source_url=app.config["NEWS_API_SOURCE_URL"]
+base_url = app.config["NEWS_API_SOURCE_URL"]
+article_url=app.config["ARTICLES_API_BASE_URL"]
 
 
 def get_news_sources(category):
@@ -25,8 +25,8 @@ def get_news_sources(category):
 
         news_results = None
 
-        if get_news_response['results']:
-            news_results_list = get_news_response['results']
+        if get_news_response['sources']:
+            news_results_list = get_news_response['sources']
             news_results = process_results(news_results_list)
 
 
@@ -57,3 +57,41 @@ def process_results(news_list):
             news_results.append(source_object)
 
     return news_results    
+
+def get_news(category):
+    '''
+    Function that gets the json response to url request
+    '''
+
+    get_news_url = article_url.format(category, apiKey)
+
+    with urllib.request.urlopen(get_news_url) as url:
+        get_news_data = url.read()
+        get_news_response = json.loads(get_news_data)
+
+        news_results = None
+
+        if get_news_response['articles']:
+            news_results_list = get_news_response['articles']
+            news_results = process_article_results(news_results_list)
+
+    return news_results
+
+def process_article_results(article_list):
+
+    article_results = []
+
+    for item in article_list:
+        author = item.get('author')
+        title = item.get('title')
+        description = item.get('description')
+        url = item.get('url')
+        urlToImage = item.get('urlToImage')
+        id = item.get('id')
+        publishedAt = item.get('publishedAt')
+
+        if url:
+            article_object = News(author,id, title, description, url, urlToImage,publishedAt)
+            article_results.append(article_object)
+
+    return article_results
