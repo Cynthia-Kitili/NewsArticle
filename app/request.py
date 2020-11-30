@@ -1,17 +1,19 @@
 from app import app
 import urllib.request,json
-from .models import news
+from .models import news,sources
 
 News = news.News
+Sources=sources.Sources
 # Getting api key
 api_key = app.config ['NEWS_API_KEY']
 
 
 # Getting the movie base url
-base_url = app.config["NEWS_API_BASE_URL"]
+base_url = app.config["ARTICLES_API_BASE_URL"]
+source_url=app.config["NEWS_API_SOURCE_URL"]
 
 
-def get_news(category):
+def get_news_sources(category):
     '''
     Function that gets the json response to our url request
     '''
@@ -36,20 +38,22 @@ def process_results(news_list):
     Function  that processes the news result and transform them to a list of Objects
 
     Args:
-        news_list: A list of dictionaries that contain movie details
+        news_list: A list of dictionaries that contain news details
 
     Returns :
-        news_results: A list of movie objects
+        news_results: A list of news objects
     '''
     news_results = []
     for news_item in news_list:
         id = news_item.get('id')
-        title = news_item.get('original_title')
-        overview = news_item.get('overview')
-        poster = news_item.get('poster_path')
+        title=news_item.get('title')
+        name = news_item.get('name')
+        description = news_item.get('description')
+        category = news_item.get('category')
+        url = news_item.get('url')
 
-        if poster:
-            news_object = News(id,title,overview,poster)
-            news_results.append(news_object)
+        if url:
+            source_object = Sources(id, name, description, category, url)
+            news_results.append(source_object)
 
     return news_results    
