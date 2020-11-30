@@ -10,7 +10,7 @@ class NewsTest(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.new_news = News (1234,'Best News Source','All Articles are Available','https://image.tmdb.org/t/p/w500/khsjha27hbs')
+        self.new_news = News (1234,'Best News Source','Joanna Weiss','Politics','Time to shine','Be the best version of yourself')
 
     def test_instance(self):
         self.assertTrue(isinstance(self.new_news,News))  
