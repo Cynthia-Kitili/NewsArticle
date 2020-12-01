@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macro %}   
+
+<!-- styles block -->
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{url_for('static',filename='css/biz.css')}}">
+{% endblock %}
+
+
+
+<!-- Content block -->
+{% block content %}
+
+   <!-- TITLE -->
+<div class="container">
+        
+                <div class="row">
+                        <div class="col-md-4 col-lg-4">
+                             <h2>Health</h2>        
+                        </div>
+                    
+                        <div class="col-md-4 col-lg-4 ">
+                               
+                        </div>
+                    
+                        <div class="col-md-4 col-lg-4">
+                                 <h2>News</h2>                
+                        </div>
+                </div>
+            
+</div> 
+
+    <!-- Lists of Business News Sources -->
+  <div class="container">
+    <div class="jumbotron jumboff">
+        {{ macro.displaySourcesList(healthsource)}}
+
+    </div>
+    
+  </div>
+                     
+                    
+{% endblock %}  

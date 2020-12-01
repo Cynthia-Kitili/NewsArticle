@@ -1,74 +1,98 @@
-from flask import render_template,redirect,url_for,request
+from flask import render_template,request,redirect,url_for
 from . import main
-from ..models import Sources
-from ..request import get_sources, get_articles, topheadlines, everything, search_everything
+from ..requests import get_sources,get_articles
+from ..models import Newsarticle,Newssources
 
+
+#views
 @main.route('/')
 def index():
     '''
-    View root page function that returns the index page and its data
+    view root page function that returns the index page and its data
     '''
-    # message = 'Hello World'
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('index.html',title = title)
 
-    cat_general = get_sources('general')
-    cat_business = get_sources('business')
-    cat_entertainment = get_sources('entertainment')
-    cat_sports = get_sources('sports')
-    cat_tech = get_sources('technology')
-    cat_science = get_sources('science')
-    cat_health = get_sources('health')
 
-    title = 'Home | Best News Update Site'
+
+
+@main.route('/Business/')
+def BusinessSources():
+    '''
+    view  page function that returns  business news from various news sources
+    '''
+    business_sources = get_sources('business')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('biz.html',title = title,biznews = business_sources)
+
+@main.route('/Entertainment/')
+def EntertainmentSources():
+    '''
+    view  page function that returns  entertainment news from various news sources
+    '''
+    entertainment_sources = get_sources('entertainment')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('enta.html',title = title,enta = entertainment_sources)
+
+@main.route('/Health/')
+def HealthSources():
+    '''
+    view  page function that returns  health news from various news sources
+    '''
+    health_sources = get_sources('health')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('health.html',title = title,healthsource = health_sources)
+@main.route('/General/')
+def GeneralSources():
+    '''
+    view  page function that returns  general news from various news sources
+    '''
+    general_sources = get_sources('general')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('gen.html',title = title,general = general_sources)
+
+@main.route('/Science/')
+def ScienceSources():
+    '''
+    view page function that returns  science news from various news sources
+    '''
+    science_sources = get_sources('science')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('science.html',title = title,science = science_sources)
+
+@main.route('/Sports/')
+def SportsSources():
+    '''
+    view  page function that returns  sports news from various news sources
+    '''
+    sports_sources = get_sources('sports')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('sports.html',title = title,sports = sports_sources)
+
+@main.route('/Technology/')
+def TechnologySources():
+    '''
+    view  page function that returns technology news from various news sources
+    '''
+    technology_sources = get_sources('technology')
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('tech.html',title = title,tech = technology_sources)
+
+
+@main.route('/source/<id>/')
+def NewsGetArticles(id):
+    '''
+    view  page function that returns technology news from various news sources
+    '''
+    news = get_articles(id)
     
-    return render_template('index.html',title=title, general=cat_general, business = cat_business, entertainment = cat_entertainment, sports = cat_sports, tech = cat_tech, science = cat_science, health = cat_health)
-
-@main.route('/articles/<source_id>&<int:per_page>')
-def articles(source_id,per_page):
-    '''
-    Function that returns articles based on their sources
-    '''
-    # print(source_id)
-    # per_page = 40
-    news_source = get_articles(source_id,per_page)
-    title = f'{source_id} | All Articles'
-    return render_template('articles.html', title = title, name = source_id, news = news_source)
-
-@main.route('/topheadlines&<int:per_page>')
-def headlines(per_page):
-    '''
-    Function that returns top headlines articles
-    '''
-    # per_page = 40
-    topheadlines_news = topheadlines(per_page)
-    title = 'Top Headlines'
-    return render_template('topheadlines.html',title=title, name='Top Headlines' ,news=topheadlines_news)
-
-@main.route('/everything&<int:per_page>')
-def all_news(per_page):
-    '''
-    Function that returns top headlines articles
-    '''
-    # per_page = 40
-    everything_news = everything(per_page)
-    title = 'All News'
-    
-    search_articles = request.args.get('search_query')
-
-    if search_articles:
-        return redirect(url_for('main.search',topic=search_articles))
-    else:
-        return render_template('topheadlines.html', title=title, name='All News', news=everything_news)
-
-@main.route('/search/<topic>')
-def search(topic):
-    '''
-    function that returns the results of search request
-    '''
-    limit = 40
-    search_name = topic.split(" ")
-    search_name_format = "+".join(search_name)
-    search_every = search_everything(limit,search_name_format)
-
-    title = '{search_name_format} Results'
-
-    return render_template('search.html',title=title,news = search_every)
+   
+    title = 'Home - Welcome to The best News Update Website Online'
+    return render_template('article.html',title = title,news=news)

@@ -1,0 +1,267 @@
+<div class="container">
+    <div class="row">
+            <div class="col-md-4 ">
+            <h4></h4>
+            </div>
+            <div class="col-md-4 boxess">
+                    <h4>Health News</h4>
+            </div>
+            <div class="col-md-4 ">
+                    <h4></h4>
+            </div>
+    </div>
+    
+    <div class="row">
+            <div class="col-md-6 col-lg-4 boxess">
+            <h4>Health News</h4>
+            </div>
+            <div class="col-lg-3 col-md-0">
+    
+            </div>
+    
+            <div class="col-md-6 col-lg-5 boxess">
+                    <h4>Health News</h4>
+            </div>
+    </div>
+    
+    
+    <div class="row">
+            <div class="col-md-4 ">
+            <h4></h4>
+            </div>
+            <div class="col-md-4 boxess">
+                    <h4>Health News</h4>
+            </div>
+            <div class="col-md-4 ">
+                    <h4></h4>
+            </div>
+    </div>
+    
+    <div class="row">
+            <div class="col-md-6 col-lg-4 boxess">
+            <h4>Health News</h4>
+            </div>
+            <div class="col-lg-3 col-md-0">
+    
+            </div>
+    
+            <div class="col-md-6 col-lg-5 boxess">
+                    <h4>Health News</h4>
+            </div>
+    </div>
+    
+    
+    </div>
+    
+    
+    
+    <!-- <div class="jumbotron you">
+    <h3> Health</h3>
+    <ul>
+    {% for healthsource in healthsource %}
+    {{healthsource.id}}
+    {{healthsource.name}}
+    {{healthsource.description}}
+    {{healthsource.country}}
+       {{healthsource.url}}
+    {% endfor %}
+    </ul>
+    </div>
+    -->
+    
+    <div class="row">
+            <div class="col-lg-5">
+    
+            </div>
+    
+            <div class="col-lg-2">
+                    <h1>News-Highlight</h1>
+            </div>
+    
+            <div class="col-lg-5">
+                    
+            </div>
+        </div>
+              <!-- liuttttg -->
+    
+              {% extends 'base.html' %}
+              {% import 'macros.html' as macro %}   
+              
+              <!-- styles block -->
+              {% block styles %}
+              {{ super() }}
+              <link rel="stylesheet" href="{{url_for('static',filename='css/index.css')}}">
+              {% endblock %}
+              
+              
+              
+              <!-- Content block -->
+              {% block content %}
+              <div class="container">
+                  <div class="row">
+                  <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <h4>Health News</h4> 
+                                  <span class="caret"></span>
+                              </button>
+                      
+                              <ul class="dropdown-menu">
+                                  {{ macro.displaySourcesList(healthsource)}}
+                              </ul>
+                              </div>
+                                         
+                  </div>
+              
+                  <div class="col-md-4 col-lg-2">
+                  </div>
+              
+                  <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <h4>Business News</h4> 
+                                  <span class="caret"></span>
+                              </button>
+                      
+                              <ul class="dropdown-menu">
+                                  {{ macro.displaySourcesList(biznews)}}
+                              </ul>
+                              </div>
+                                                
+                  </div>
+                  </div>
+              
+              
+                  <div class="row">
+                          <div class="col-md-4 col-lg-3">
+                                       
+                          </div>
+                      
+                      <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <h4>Sports News</h4> 
+                                  <span class="caret"></span>
+                              </button>
+                      
+                              <ul class="dropdown-menu">
+                                  {{ macro.displaySourcesList(sports)}}
+                              </ul>
+                              </div>
+                                     
+                          </div>
+                      
+                          <div class="col-md-4 col-lg-4">
+                                                   
+                          </div>
+                  </div>
+              
+              
+              
+              
+                  <div class="row">
+                      <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <h4>Entertainment News</h4> 
+                                  <span class="caret"></span>
+                              </button>
+                      
+                              <ul class="dropdown-menu">
+                                  {{ macro.displaySourcesList(enta)}}
+                              </ul>
+                              </div>
+                                          
+                          </div>
+                      
+                          <div class="col-md-4 col-lg-2">
+                          </div>
+                      
+                          <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <h4>General News</h4> 
+                                  <span class="caret"></span>
+                              </button>
+                      
+                              <ul class="dropdown-menu">
+                                  {{ macro.displaySourcesList(general)}}
+                              </ul>
+                              </div>
+                                     
+                          </div>
+                          </div>
+              
+              
+              
+              
+                          <div class="row">
+                                  <div class="col-md-4 col-lg-3">
+                                               
+                                  </div>
+                              
+                                  <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  <h4>Science News</h4> 
+                                  <span class="caret"></span>
+                              </button>
+                      
+                              <ul class="dropdown-menu">
+                                  {{ macro.displaySourcesList(science)}}
+                              </ul>
+                              </div>
+                                     
+                                  </div>
+                              
+                                  <div class="col-md-4 col-lg-4">
+                                                           
+                                  </div>
+                          </div>
+                      
+              
+                          <div class="row">
+                                  <div class="col-md-4 col-lg-5 boxess">
+                      <div class="btn-group">
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <h4>Technology News</h4> 
+                          <span class="caret"></span>
+                      </button>
+              
+                      <ul class="dropdown-menu">
+                          {{ macro.displaySourcesList(tech)}}
+                      </ul>
+                      </div>
+                                  </div>
+                              
+              
+              
+                                  <div class="col-md-4 col-lg-2">
+                                      
+                                  </div>
+                              
+                                  <div class="col-md-4 col-lg-5 boxess">
+                                          
+                                  </div>
+                          </div>
+                      
+                      
+              
+              
+              
+              
+              
+              
+              </div>
+               
+              
+              
+                  
+              {% endblock %}  
+    
+    
+              <li role="separator" class="divider"></li>
+              <li><a href="#">{{source.name}}</a></li>
+              <li><a href="#">{{source.description}}</a></li>
+              <li><a href="#">{{source.url}}</a></li>
+              <li role="separator" class="divider"></li>
